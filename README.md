@@ -10,6 +10,7 @@ This project involves sentiment analysis of Amazon product reviews using various
 - [Sentiment Analysis](#sentiment-analysis)
 - [Machine Learning Models](#machine-learning-models)
 - [Usage](#usage)
+- [Conclusion](#conclusion)
 
 ## Introduction
 
