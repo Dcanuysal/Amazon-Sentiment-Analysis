@@ -25,27 +25,30 @@ The goal of this project is to analyze Amazon product reviews and classify them 
    - Remove stopwords.
    - Remove rare words.
    - Lemmatize the text.
+     
+## Exploratory Data Analysis
+Here, we perform some exploratory data analysis to visualize the word frequencies:
+1. Word Frequency Bar Plot: Plotting words with frequency greater than 500.
+2. Word Cloud: Visualization of word frequencies using a word cloud.
 
-```python
-# Load the dataset
-df = pd.read_excel(r"C:\Users\dogan\OneDrive\Desktop\amazon.xlsx")
+## Sentiment Analysis
+In this step, we use the VADER sentiment analysis tool to label reviews as positive or negative:
+1. Install NLTK and Download VADER Lexicon.
+2. Perform Sentiment Analysis.
 
-# Normalizing Case Folding
-df["Review"] = df["Review"].str.lower()
+## Machine Learning Models
+We build and evaluate machine learning models to classify sentiments:
+1. Splitting Data into Train and Test Sets
+2. TF-IDF Word Level Transformation
+3. Logistic Regression Model
+4. Random Forest Model
 
-# Punctuations
-df["Review"] = df["Review"].str.replace("[^\w\s]", "")
+## Usage
+Clone the repository.
+Install the necessary dependencies.
+Run the Jupyter notebook or the Python script to execute the analysis.
 
-# Numbers
-df["Review"] = df["Review"].str.replace("\d", "")
+## Conclusion
+This project demonstrates a complete workflow for sentiment analysis on Amazon product reviews, from data preprocessing and exploratory analysis to sentiment classification using machine learning models. Feel free to explore the code and modify it for your own data and use cases.
 
-# Stopwords
-sw = stopwords.words("english")
-df["Review"] = df["Review"].apply(lambda x: " ".join(x for x in str(x).split() if x not in sw))
 
-# Rarewords / Custom Words
-sil = pd.Series(" ".join(df["Review"]).split()).value_counts()[-1000:]
-df["Review"] = df["Review"].apply(lambda x: " ".join(x for x in x.split() if x not in sil))
-
-# Lemmatization
-df["Review"] = df["Review"].apply(lambda x: " ".join([Word(word).lemmatize() for word in x.split()]))
